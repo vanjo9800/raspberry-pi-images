@@ -1,0 +1,1 @@
+../version.auto.pkrvars.hcl

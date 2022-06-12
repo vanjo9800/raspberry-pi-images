@@ -1,0 +1,14 @@
+#!/bin/bash
+
+image="${1:-base-image}" 
+
+docker run \
+  --rm \
+  --privileged \
+  -v /dev:/dev \
+  -v ${PWD}:/config:ro \
+  -v ${PWD}/packer_cache:/config/packer_cache \
+  -v ${PWD}/output-arm-image:/config/output-arm-image \
+  -e PACKER_CACHE_DIR=/config/packer_cache \
+  -w /config/$image \
+  packer-arm -parallel-builds=1 .
